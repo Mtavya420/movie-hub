@@ -1,50 +1,32 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
+import { SimpleGrid, Text } from "@chakra-ui/react";
+import useMusic from "../hooks/useMusic";
+import MusicCard from "./MusicCard";
+import MusicCardContainer from "./MusicCardContainer";
+import MusicCardSkeleton from "./MusicCardSkeleton";
 
-interface Music {
-  id: string;
-  name: string;
-  key: any;
-}
 
-interface FetchMusicResponse {
-  results: Music[];
-}
 
 const MusicGrid = () => {
-  const [music, setMusic] = useState<Music[]>([]);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    apiClient
-      .get<FetchMusicResponse>("/tracks")
-      .then((res) => {
-        console.log("response", res);
-        setMusic(res.data.results);
-      })
-      .catch((err) => setError(err.message))
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
-          
-
-  if (isLoading) {
-    return <li>Loading music....</li>;
-   
-  }
+const {music, error, isLoading} = useMusic()
+const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
-    <ul>
-      {music?.length > 0 ? (
-        music.map((song) => <li key={song.id}>{song.name}</li>)
-      ) : (
-        <li>No music found!!!</li>
-      )}
-    
-    </ul>
+    <>
+      {error && <Text>{error}</Text>}
+      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} spacing={10}>
+        {isLoading &&
+          skeletons.map((skeleton) => (
+            <MusicCardContainer key={skeleton}>
+              <MusicCardSkeleton />
+            </MusicCardContainer>
+          ))}
+        {music.map((song) => (
+          <MusicCardContainer>
+          <MusicCard key={song.id} song={song} />
+          </MusicCardContainer>
+        ))}
+      </SimpleGrid>
+    </>
   );
 };
 
