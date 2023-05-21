@@ -1,11 +1,8 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://api.jamendo.com/v3.0",
+  baseURL: "https://api.themoviedb.org/3",
   params: {
-    client_id: "8f6bfd02",
-    format: "json",
+    api_key: import.meta.env.VITE_REACT_APP_TMDB_API_KEY,
   },
 });
-
-

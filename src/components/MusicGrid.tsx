@@ -1,14 +1,12 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import useMusic from "../hooks/useMusic";
 import MusicCard from "./MusicCard";
-import MusicCardContainer from "./MusicCardContainer";
-import MusicCardSkeleton from "./MusicCardSkeleton";
-
-
+import MusicCardContainer from "./MovieCardContainer";
+import MusicCardSkeleton from "./MovieCardSkeleton";
 
 const MusicGrid = () => {
-const {music, error, isLoading} = useMusic()
-const skeletons = [1, 2, 3, 4, 5, 6];
+  const { music, error, isLoading } = useMusic();
+  const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
     <>
@@ -22,7 +20,7 @@ const skeletons = [1, 2, 3, 4, 5, 6];
           ))}
         {music.map((song) => (
           <MusicCardContainer>
-          <MusicCard key={song.id} song={song} />
+            <MusicCard key={song.id} song={song} />
           </MusicCardContainer>
         ))}
       </SimpleGrid>
