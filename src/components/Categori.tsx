@@ -2,15 +2,20 @@ import {
   Button,
   HStack,
   Heading,
+  Image,
   List,
   ListItem,
   Spinner,
 } from "@chakra-ui/react";
-import useCategory, { Categori } from "../hooks/useCategory";
+import useCategory, { Category } from "../hooks/useCategory";
+
+
+
+
 
 interface Props {
-  onSelectedCategori: (categori: Categori) => void;
-  selectedCategori: Categori | null;
+  onSelectedCategori: (category: Category) => void;
+  selectedCategori: Category | null;
 }
 
 const GenreList = ({ selectedCategori, onSelectedCategori }: Props) => {
@@ -25,20 +30,26 @@ const GenreList = ({ selectedCategori, onSelectedCategori }: Props) => {
         Category
       </Heading>
       <List>
-        {data.map((categori) => (
-          <ListItem key={categori.id} paddingY="5px">
+        {data.map((category) => (
+          <ListItem key={category.id} paddingY="5px">
             <HStack>
+              <Image
+                boxSize="32px"
+                borderRadius={8}
+                objectFit="cover"
+                src={category.images}
+              />
               <Button
                 whiteSpace="normal"
                 textAlign="left"
                 fontWeight={
-                  categori.id === selectedCategori?.id ? "bold" : "normal"
+                  category.id === selectedCategori?.id ? "bold" : "normal"
                 }
-                onClick={() => onSelectedCategori(categori)}
+                // onClick={() => onSelectedCategori(category)}
                 fontSize="lg"
                 variant="link"
               >
-                {categori.name}
+                {category.name}
               </Button>
             </HStack>
           </ListItem>

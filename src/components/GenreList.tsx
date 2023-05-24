@@ -2,6 +2,7 @@ import {
   Button,
   HStack,
   Heading,
+  Image,
   List,
   ListItem,
   Spinner,
@@ -28,6 +29,12 @@ const GenreList = ({ selectedGenre, onSelectedGenre }: Props) => {
         {data.map((genre) => (
           <ListItem key={genre.name} paddingY="5px">
             <HStack>
+              <Image
+                boxSize="32px"
+                borderRadius={8}
+                objectFit="cover"
+                src={genre.images}
+              />
               <Button
                 whiteSpace="normal"
                 textAlign="left"

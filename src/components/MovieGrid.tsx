@@ -16,21 +16,23 @@ const MovieGrid = ({movieQuery}: Props) => {
 
 if (error) return <Text>{error}</Text>;
   return (
-    
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
-        {isLoading &&
-          skeletons.map((skeleton) => (
-            <MusicCardContainer key={skeleton}>
-              <MovieCardSkeleton />
-            </MusicCardContainer>
-          ))}
-        {data.map((movie) => (
-          <MusicCardContainer key={movie.id}>
-            <MovieCard movie={movie} />
+    <SimpleGrid
+      columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+      spacing={6}
+      paddingRight={3}
+    >
+      {isLoading &&
+        skeletons.map((skeleton) => (
+          <MusicCardContainer key={skeleton}>
+            <MovieCardSkeleton />
           </MusicCardContainer>
         ))}
-      </SimpleGrid>
- 
+      {data.map((movie) => (
+        <MusicCardContainer key={movie.id}>
+          <MovieCard movie={movie} />
+        </MusicCardContainer>
+      ))}
+    </SimpleGrid>
   );
 };
 

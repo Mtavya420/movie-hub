@@ -1,9 +1,15 @@
 import category from "../data/category";
 
 
-export interface Categori {
+export interface Category {
   id: number;
   name: string;
+  images: string;
+  //   title: string;
+  //   poster_path: string;
+  //   overview: string;
+  //   vote_average: number;
+  //   backdrop_path: string;
 }
 
 // const useGenres = () => useData<Genre>("/genre/movie/list");

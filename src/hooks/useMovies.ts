@@ -19,10 +19,10 @@ const useMovies = (
     "/discover/movie",
     {
       params: {
-        genres: MovieQuery.genre ?.id,
-        resultsCategory: MovieQuery.category?.id,
-        results: MovieQuery.sortOrder,
-        search: MovieQuery.searchText
+        with_genres: MovieQuery.genre ?.id,
+        // resultsCategory: MovieQuery.category?.id ,
+        sort_by: MovieQuery.sortOrder||MovieQuery.category?.id,
+        query: MovieQuery.searchText
       },
       
     },
