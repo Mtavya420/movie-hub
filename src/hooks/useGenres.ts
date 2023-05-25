@@ -1,4 +1,6 @@
+
 import genres from "../data/genres";
+
 // import useData from "./useData";
 
 export interface Genre {
@@ -6,7 +8,10 @@ export interface Genre {
   name: string;
 }
 
+
+
 // const useGenres = () => useData<Genre>("/genre/movie/list");
+
 
 const useGenres = () => ({ data: genres, isLoading: false, error: null });
 

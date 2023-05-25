@@ -2,6 +2,7 @@ import { Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react";
 import { Movie } from "../hooks/useMovies";
 import Rating from "./Rating";
 import Emoji from "./Emoji";
+import noImage from "../assets/no-image.webp";
 
 interface Props {
   movie: Movie;
@@ -12,9 +13,16 @@ const MovieCard = ({ movie }: Props) => {
 
   return (
     <Card borderRadius={10} overflow="hidden">
-      <Image src={backdropUrl} alt={movie.title} />
+      {movie.backdrop_path ? (
+        <Image src={backdropUrl} alt={movie.title} />
+      ) : (
+        <Image src={noImage} alt="No Image" />
+      )}
       <CardBody>
-        <HStack justifyContent="end" marginBottom={3}>
+        <HStack justifyContent="space-between" marginBottom={3}>
+          <Heading fontSize="md" as="i">
+            {movie.release_date}
+          </Heading>
           <Rating score={movie.vote_average} />
         </HStack>
         <Heading fontSize="2xl" justifyContent="end">

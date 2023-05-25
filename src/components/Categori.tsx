@@ -18,7 +18,7 @@ interface Props {
   selectedCategori: Category | null;
 }
 
-const GenreList = ({ selectedCategori, onSelectedCategori }: Props) => {
+const Categori = ({ selectedCategori, onSelectedCategori }: Props) => {
   const { data, error, isLoading } = useCategory();
 
   if (error) return null;
@@ -59,4 +59,4 @@ const GenreList = ({ selectedCategori, onSelectedCategori }: Props) => {
   );
 };
 
-export default GenreList;
+export default Categori;
