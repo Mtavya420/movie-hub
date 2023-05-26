@@ -22,7 +22,7 @@ const MovieGrid = () => {
   if (error) return <Text>{error.message}</Text>;
 
   const fetchedGamesCount =
-    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
+    data?.pages.reduce((total, page) => total + page.results!.length, 0) || 0;
   return (
     <>
       <InfiniteScroll
@@ -44,7 +44,7 @@ const MovieGrid = () => {
             ))}
           {data?.pages.map((page, index) => (
             <React.Fragment key={index}>
-              {page.results.map((movie) => (
+              {page.results!.map((movie) => (
                 <MusicCardContainer key={movie.id}>
                   <MovieCard movie={movie} />
                 </MusicCardContainer>

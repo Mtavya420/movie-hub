@@ -1,13 +1,13 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { MovieQuery } from "../App";
+import ms from 'ms';
 import APIClient, { FetchResponse } from "../services/api-client";
-import ms from 'ms'
 import useMovieQueryStore from "../store";
 
 const apiClient = new APIClient<Movie>("/discover/movie");
 export interface Movie {
   id: number;
   title: string;
+  // movie_id: number;
   poster_path: string;
   overview: string;
   vote_average: number;
@@ -26,7 +26,7 @@ const useMovies = () =>{
          with_genres: MovieQuery.genreId,
          // resultsCategory: MovieQuery.category?.id ,
          sort_by: MovieQuery.sortOrder,
-         query: MovieQuery.searchText,
+         with_keywords: MovieQuery.searchText,
          page: pageParam,
        },
      }),

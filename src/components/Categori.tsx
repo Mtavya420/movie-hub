@@ -14,7 +14,7 @@ import useMovieQueryStore from "../store";
 
 const Categori = () => {
    const categoryId = useMovieQueryStore((s) => s.movieQuery.categoryId);
-   const setCategoryId = useMovieQueryStore((s) => s.setCategoryId);
+  //  const setCategoryId = useMovieQueryStore((s) => s.setCategoryId);
   const { data, error, isLoading } = useCategory();
 
   if (error) return null;

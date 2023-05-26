@@ -1,26 +1,22 @@
-import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
-import Categori from "./components/Categori";
-import GenreList from "./components/GenreList";
-import MovieGrid from "./components/MovieGrid";
-import MovieHeading from "./components/MovieHeading";
-import NavBar from "./components/NavBar";
-import SortSelector from "./components/SortSelector";
+import { Grid, Show, GridItem, Flex, Box } from "@chakra-ui/react";
+import Categori from "../components/Categori";
+import GenreList from "../components/GenreList";
+import MovieGrid from "../components/MovieGrid";
+import MovieHeading from "../components/MovieHeading";
+import SortSelector from "../components/SortSelector";
 
-function App() {
+const Homepage = () => {
   return (
     <Grid
       templateAreas={{
-        base: `"nav" " main"`,
-        lg: `"nav nav" "aside main"`,
+        base: ` " main"`,
+        lg: `"aside main"`,
       }}
       templateColumns={{
         base: "1fr",
         lg: "200px 1fr",
       }}
     >
-      <GridItem area="nav">
-        <NavBar />
-      </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
           <Box marginBottom={5} paddingY={5}>
@@ -35,7 +31,7 @@ function App() {
           <Flex paddingLeft={2} marginBottom={5}>
             <SortSelector />
           </Flex>
-          <MovieGrid  />
+          <MovieGrid />
 
           <Flex marginBottom={5}>
             <Box marginRight={5}></Box>
@@ -44,6 +40,6 @@ function App() {
       </GridItem>
     </Grid>
   );
-}
+};
 
-export default App;
+export default Homepage;

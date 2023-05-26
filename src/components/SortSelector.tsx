@@ -6,10 +6,11 @@ import useMovieQueryStore from "../store";
 const SortSelector = () => {
   const sortOrder = useMovieQueryStore((s) => s.movieQuery.sortOrder);
   const setSortOrder = useMovieQueryStore((s) => s.setSortOrder);
+  
   const sortOrders = [
     { value: "", label: "Relevance" },
     { value: "popularity.desc", label: "Popularity" },
-    { value: "release_date.lte", label: "Release date" },
+    { value: "primary_release_date.desc", label: "Release date" },
     { value: "vote_count.desc", label: "Vote Count" },
     { value: "vote_average.desc", label: "Average rating" },
   ];
