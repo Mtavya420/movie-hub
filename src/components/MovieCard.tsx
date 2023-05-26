@@ -1,5 +1,5 @@
 import { Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react";
-import { Movie } from "../hooks/useMovies";
+import { Movie } from "../entities/Movie";
 import Rating from "./Rating";
 import Emoji from "./Emoji";
 import noImage from "../assets/no-image.webp";
@@ -13,7 +13,6 @@ const MovieCard = ({ movie }: Props) => {
   const backdropUrl = `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`;
 
   return (
-    
     <Card>
       {movie.backdrop_path ? (
         <Image src={backdropUrl} alt={movie.title} />
@@ -28,7 +27,7 @@ const MovieCard = ({ movie }: Props) => {
           <Rating score={movie.vote_average} />
         </HStack>
         <Heading fontSize="2xl" justifyContent="end">
-          <Link to={'/movies/' + movie.id}>{movie.title}</Link>
+          <Link to={"/movies/" + movie.id}>{movie.title}</Link>
           <Emoji rating={movie.vote_average} />
         </Heading>
       </CardBody>
