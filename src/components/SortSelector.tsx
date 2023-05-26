@@ -1,16 +1,15 @@
 import { Menu, MenuButton, Button, MenuList, MenuItem } from "@chakra-ui/react";
 
 import { BsChevronDown } from "react-icons/bs";
+import useMovieQueryStore from "../store";
 
-interface Props {
-  onSelectSortOrder: (sortOrder: string) => void;
-  sortOrder: string;
-}
-const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
+const SortSelector = () => {
+  const sortOrder = useMovieQueryStore((s) => s.movieQuery.sortOrder);
+  const setSortOrder = useMovieQueryStore((s) => s.setSortOrder);
   const sortOrders = [
     { value: "", label: "Relevance" },
     { value: "popularity.desc", label: "Popularity" },
-    { value: "release_date.gte", label: "Release date" },
+    { value: "release_date.lte", label: "Release date" },
     { value: "vote_count.desc", label: "Vote Count" },
     { value: "vote_average.desc", label: "Average rating" },
   ];
@@ -25,7 +24,7 @@ const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
       <MenuList>
         {sortOrders.map((order) => (
           <MenuItem
-            onClick={() => onSelectSortOrder(order.value)}
+            onClick={() => setSortOrder(order.value)}
             key={order.value}
             value={order.value}
           >

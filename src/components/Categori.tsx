@@ -7,18 +7,14 @@ import {
   ListItem,
   Spinner,
 } from "@chakra-ui/react";
-import useCategory, { Category } from "../hooks/useCategory";
+import useCategory from "../hooks/useCategory";
+import useMovieQueryStore from "../store";
 
 
 
-
-
-interface Props {
-  onSelectedCategori: (category: Category) => void;
-  selectedCategori: Category | null;
-}
-
-const Categori = ({ selectedCategori, onSelectedCategori }: Props) => {
+const Categori = () => {
+   const categoryId = useMovieQueryStore((s) => s.movieQuery.categoryId);
+   const setCategoryId = useMovieQueryStore((s) => s.setCategoryId);
   const { data, error, isLoading } = useCategory();
 
   if (error) return null;
@@ -43,9 +39,9 @@ const Categori = ({ selectedCategori, onSelectedCategori }: Props) => {
                 whiteSpace="normal"
                 textAlign="left"
                 fontWeight={
-                  category.id === selectedCategori?.id ? "bold" : "normal"
+                  category.id === categoryId ? "bold" : "normal"
                 }
-                // onClick={() => onSelectedCategori(category)}
+                // onClick={() => setCategoryId(categoryId)}
                 fontSize="lg"
                 variant="link"
               >

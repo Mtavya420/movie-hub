@@ -4,22 +4,19 @@ import MovieCard from "./MovieCard";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import MusicCardContainer from "./MovieCardContainer";
 
-import { MovieQuery } from "../App";
+
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-interface Props {
-  movieQuery: MovieQuery;
-}
 
-const MovieGrid = ({ movieQuery }: Props) => {
+const MovieGrid = () => {
   const {
     data,
     isLoading,
     error,
     fetchNextPage,
     hasNextPage,
-  } = useMovies(movieQuery);
+  } = useMovies();
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   if (error) return <Text>{error.message}</Text>;
