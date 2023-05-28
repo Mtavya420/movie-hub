@@ -4,9 +4,11 @@ import APIClient, { FetchResponse } from "../services/api-client";
 import useMovieQueryStore from "../store";
 import { Movie } from "../entities/Movie";
 
-const apiClient = new APIClient<Movie>("/discover/movie");
+
 const useMovies = () => {
   const MovieQuery = useMovieQueryStore((s) => s.movieQuery);
+   const endpoint = MovieQuery.searchText ? "/search/movie" : "/discover/movie";
+   const apiClient = new APIClient<Movie>(endpoint);
 
   return useInfiniteQuery<FetchResponse<Movie>, Error>({
     queryKey: ["movies", MovieQuery],
@@ -14,9 +16,9 @@ const useMovies = () => {
       apiClient.getAll({
         params: {
           with_genres: MovieQuery.genreId,
-          // resultsCategory: MovieQuery.category?.id ,
-          sort_by: MovieQuery.sortOrder,
-          with_keywords: MovieQuery.searchText,
+          include_video: 'true',
+          sort_by: MovieQuery.sortOrder||MovieQuery.category,
+          query: MovieQuery.searchText,
           page: pageParam,
         },
       }),

@@ -2,8 +2,9 @@ import axios, { AxiosRequestConfig } from "axios";
 
 export interface FetchResponse<T> {
   count: number;
-  next : string | null;
+  next: string | null;
   page: number;
+  total_pages: number;
   results?: T[];
   genres?: T[];
 }

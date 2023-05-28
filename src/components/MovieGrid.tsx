@@ -2,21 +2,12 @@ import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import useMovies from "../hooks/useMovies";
 import MovieCard from "./MovieCard";
 import MovieCardSkeleton from "./MovieCardSkeleton";
-import MusicCardContainer from "./MovieCardContainer";
-
-
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-
+import MovieCardContainer from "./MovieCardContainer";
 
 const MovieGrid = () => {
-  const {
-    data,
-    isLoading,
-    error,
-    fetchNextPage,
-    hasNextPage,
-  } = useMovies();
+  const { data, isLoading, error, fetchNextPage, hasNextPage } = useMovies();
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   if (error) return <Text>{error.message}</Text>;
@@ -38,16 +29,16 @@ const MovieGrid = () => {
         >
           {isLoading &&
             skeletons.map((skeleton) => (
-              <MusicCardContainer key={skeleton}>
+              <MovieCardContainer key={skeleton}>
                 <MovieCardSkeleton />
-              </MusicCardContainer>
+              </MovieCardContainer>
             ))}
           {data?.pages.map((page, index) => (
             <React.Fragment key={index}>
               {page.results!.map((movie) => (
-                <MusicCardContainer key={movie.id}>
+                <MovieCardContainer key={movie.id}>
                   <MovieCard movie={movie} />
-                </MusicCardContainer>
+                </MovieCardContainer>
               ))}
             </React.Fragment>
           ))}

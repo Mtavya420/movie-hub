@@ -9,7 +9,7 @@ const MovieCardContainer = ({ children }: Props) => {
     <Box
       _hover={{
         transform: "scale(1.03)",
-        transition: 'transform .15s ease-in'
+        transition: 'transform .15s ease'
       }}
       borderRadius={10}
       overflow="hidden"

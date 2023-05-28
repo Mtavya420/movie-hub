@@ -1,22 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
+import APIClient from "../services/api-client";
+import { Movie } from "../entities/Movie";
 
 
-// export interface CategoryData {
-//   id: number;
-//   title: string;
-//   poster_path: string;
-//   overview: string;
-//   vote_average: number;
-//   backdrop_path: string;
-// }
-// export const usePopular = () => useData<CategoryData>("/movie/popular");
-// export const useNowPlaying = () => useData<CategoryData>("/movie/now_playing");
-// export const useTopRated = () => useData<CategoryData>("/movie/top_rated");
-// export const useUpcoming = () => useData<CategoryData>("/movie/upcoming");
+interface EndpointMap {
+  [key: string]: string;
+}
+const useMovieCategory = (value: string) => {
+  const endpointMap:EndpointMap = {
+    now_playing: "/movie/now_playing",
+    popular: "/movie/popular",
+    top_rated: "/movie/top_rated",
+    upcoming: "/movie/upcoming",
+  };
 
-// export default {
-//   usePopular,
-//   useNowPlaying,
-//   useTopRated,
-//   useUpcoming,
-// };
+
+  const apiClient = new APIClient<Movie>(endpointMap[value]);
+  return useQuery({
+    queryKey: ["category", value],
+    queryFn: apiClient.getAll,
+  });
+};
+export default useMovieCategory;
 

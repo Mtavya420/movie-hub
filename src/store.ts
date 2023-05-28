@@ -1,19 +1,18 @@
 import { create } from "zustand";
 
- interface MovieQuery {
+interface MovieQuery {
   genreId?: number;
-  categoryId?: number;
+  category?: string;
   sortOrder?: string;
   searchText?: string;
 }
 
-interface MovieQueryStore{
-  movieQuery:  MovieQuery;
+interface MovieQueryStore {
+  movieQuery: MovieQuery;
   setSearchText: (searchText: string) => void;
   setSortOrder: (sortOrder: string) => void;
-  setCategoryId: (categoryId: number) => void;
+  setCategory: (category: string) => void;
   setGenreId: (genreId: number) => void;
-
 }
 
 const useMovieQueryStore = create<MovieQueryStore>((set) => ({
@@ -26,9 +25,9 @@ const useMovieQueryStore = create<MovieQueryStore>((set) => ({
     set((store) => ({
       movieQuery: { ...store.movieQuery, sortOrder },
     })),
-  setCategoryId: (categoryId) =>
+  setCategory: (category) =>
     set((store) => ({
-      movieQuery: { ...store.movieQuery,categoryId },
+      movieQuery: { ...store.movieQuery, category },
     })),
   setGenreId: (genreId) =>
     set((store) => ({
