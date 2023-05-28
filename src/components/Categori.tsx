@@ -18,7 +18,7 @@ interface Props {
 const Categori = ({ value }: Props) => {
   const category = useMovieQueryStore((s) => s.movieQuery.category);
   const setCategory = useMovieQueryStore((s) => s.setCategory);
-  const { data, error, isLoading } = useMovieCategory(value);
+  const {  error, isLoading } = useMovieCategory(value);
 
   // const categories = [
   //   { value: "now_playing", label: "Now Playing" },

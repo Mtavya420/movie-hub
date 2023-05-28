@@ -7,7 +7,7 @@ import useMovieQueryStore from "../store";
 
 const GameHeading = () => {
   const genreId = useMovieQueryStore((s) => s.movieQuery.genreId);
-  const categoryId = useMovieQueryStore((s) => s.movieQuery.category);
+  // const categoryId = useMovieQueryStore((s) => s.movieQuery.category);
 
 
   const genre = useGenre(genreId);
