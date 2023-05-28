@@ -29,7 +29,7 @@ const Categori = ({ value }: Props) => {
     const categories = [
       {
         value:
-          "popularity.desc&with_release_type=2||3",
+          "popularity.desc&with_release_type=1",
         label: "Now Playing",
       },
       { value: "popularity.desc", label: "Popular" },
@@ -39,7 +39,7 @@ const Categori = ({ value }: Props) => {
       },
       {
         value:
-          "popularity.desc&with_release_type=2|3&release_date.gte={2023-06-03}&release_date.lte={2024-01-31}",
+          "primary_release_date.desc",
         label: "Upcoming",
       },
     ];
